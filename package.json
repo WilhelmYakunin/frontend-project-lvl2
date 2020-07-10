@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilhelmYakunin/frontend-project-lvl2.git"
+  },
+  "name": "frontend-project-lvl2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gendiff.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilhelmYakunin/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/WilhelmYakunin/frontend-project-lvl2#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "commander": "^5.1.0",
+    "inquirer": "^7.3.1"
+  }
+}
