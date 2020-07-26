@@ -8,7 +8,7 @@
   "description": "",
   "main": "gendiff.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest"
   },
   "type": "module",
   "bin": {
@@ -26,8 +26,10 @@
   },
   "devDependencies": {
     "eslint": "^7.5.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "stylelint-config-airbnb": "0.0.0"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^25.5.1",
+    "jest": "^25.5.4",
+    "eslint-config-airbnb-base": "^14.2.0"
   }
 }

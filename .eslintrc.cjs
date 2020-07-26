@@ -14,4 +14,5 @@ module.exports = {
     'no-console': 0,
     'import/extensions': 0,
   },
+  presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
 };
