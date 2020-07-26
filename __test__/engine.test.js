@@ -1,7 +1,5 @@
-const fs = require('fs');
-const path = require('path');
-import { strict as assert } from 'assert';
-
+import strict from 'assert';
+import fs from 'fs';
 import genDiff from '../src/diffEngine';
 
 test('genDiff', () => {
@@ -13,5 +11,5 @@ test('genDiff', () => {
 
   const expected = readFile('rightAnswer.txt');
 
-  assert.notDeepStrictEqual(genDiff(file1, file2), expected);
+  strict.notDeepStrictEqual(genDiff(file1, file2), expected);
 });

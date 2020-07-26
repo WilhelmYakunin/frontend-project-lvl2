@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2020: true,
+    jest: true,
   },
   extends: [
     'airbnb-base',
@@ -14,5 +15,4 @@ module.exports = {
     'no-console': 0,
     'import/extensions': 0,
   },
-  presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
 };
