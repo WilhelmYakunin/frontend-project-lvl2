@@ -41,3 +41,6 @@ jobs:
         # Run Linter
         run: |
           make lint
+           # Run Test
+        run: |
+          npm test
