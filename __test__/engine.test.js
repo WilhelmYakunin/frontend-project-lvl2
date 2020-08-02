@@ -1,15 +1,17 @@
-import strict from 'assert';
-import fs from 'fs';
 import genDiff from '../src/diffEngine';
+import expectedEngineValue from '../__fixtures__/expectedEngineValue.js';
+import getParsed from '../src/parser.js';
+import expectedObj from '../__fixtures__/expectedDataInitial.js';
 
-test('genDiff', () => {
-  const getFixturePath = (file) => `${__dirname}/../__fixtures__/${file}`;
-  const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const getFixturePath = (file) => `./__fixtures__/${file}`;
 
-  const file1 = getFixturePath('before.json');
-  const file2 = getFixturePath('after.json');
+test('genDiff engine test', () => {
+  expect(genDiff(getFixturePath('before.json'), getFixturePath('after.json'))).toEqual(expectedEngineValue());
+  expect(genDiff(getFixturePath('before.yml'), getFixturePath('after.yml'))).toEqual(expectedEngineValue());
+});
 
-  const expected = readFile('rightAnswer.txt');
-
-  strict.notDeepStrictEqual(genDiff(file1, file2), expected);
+test('parsers test', () => {
+  expect(getParsed(getFixturePath('before.json'))).toEqual(expectedObj());
+  expect(getParsed(getFixturePath('before.yml'))).toEqual(expectedObj());
+  expect(getParsed(getFixturePath('before.txt'))).toEqual('Sorry, unknown format ;((');
 });

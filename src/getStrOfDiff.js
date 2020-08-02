@@ -1,7 +1,8 @@
 function getStrOfDifference(obj) {
   let string = '';
   obj.EQUAL.forEach(({ key, value }) => {
-    string += `\r\n    ${key}: ${value}\r\n`;
+    string += `
+    ${key}: ${value}\r\n`;
   });
   obj.MODIFIED.forEach(({ key, value }) => {
     string += `${'  + '}${key}: ${value}\r\n`;

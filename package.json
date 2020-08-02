@@ -8,7 +8,7 @@
   "description": "",
   "main": "gendiff.js",
   "scripts": {
-    "test": "jest",
+    "test": "npx -n --experimental-vm-modules jest",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "type": "module",
@@ -16,23 +16,20 @@
     "gendiff": "bin/gendiff.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Wilhelm",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/WilhelmYakunin/frontend-project-lvl2/issues"
   },
   "homepage": "https://github.com/WilhelmYakunin/frontend-project-lvl2#readme",
   "dependencies": {
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "js-yaml": "^3.14.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "babel-jest": "^25.5.1",
-    "coveralls": "^3.1.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "jest": "^25.5.4"
+    "jest": "^26.2.1"
   }
 }

@@ -1,9 +1,8 @@
-import fs from 'fs';
-import getStrOfDifference from './getStrOfDiff.js';
+import parser from './parser.js';
 
 function genDiff(filepath1, filepath2) {
-  const filedata1 = JSON.parse(fs.readFileSync(filepath1));
-  const filedata2 = JSON.parse(fs.readFileSync(filepath2));
+  const filedata1 = parser(filepath1);
+  const filedata2 = parser(filepath2);
 
   const keysOfFile1 = Object.keys(filedata1);
   const keysOfFile2 = Object.keys(filedata2);
@@ -39,7 +38,7 @@ function genDiff(filepath1, filepath2) {
     }
   });
 
-  return getStrOfDifference(differenceCollection);
+  return differenceCollection;
 }
 
 export default genDiff;
