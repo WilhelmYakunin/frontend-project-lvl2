@@ -1,41 +1,19 @@
+import _ from 'lodash';
 import parser from './parser.js';
+import dataFilter from './dataFilter.js';
 
-function genDiff(filepath1, filepath2) {
-  const filedata1 = parser(filepath1);
-  const filedata2 = parser(filepath2);
-
-  const keysOfFile1 = Object.keys(filedata1);
-  const keysOfFile2 = Object.keys(filedata2);
+function genDiff(file1, file2) {
+  const filedata1 = parser(file1);
+  const filedata2 = parser(file2);
 
   const differenceCollection = {
+    DELETED: [],
     EQUAL: [],
     MODIFIED: [],
-    DELETED: [],
     ADDED: [],
   };
 
-  keysOfFile1.forEach((key) => {
-    const value = filedata1[key];
-    if (filedata2[key] === value) {
-      differenceCollection.EQUAL.push({ key, value });
-    }
-    if ((keysOfFile2.includes(key)) && (filedata2[key] !== value)) {
-      const modifiedValue = filedata2[key];
-      differenceCollection.MODIFIED.push({ key, value, modifiedValue });
-    }
-    if (!keysOfFile2.includes(key)) {
-      differenceCollection.DELETED.push({ key, value });
-    }
-  });
-
-  keysOfFile2.forEach((key) => {
-    const value = filedata2[key];
-    if (!keysOfFile1.includes(key)) {
-      differenceCollection.ADDED.push({ key, value });
-    }
-  });
-
-  return differenceCollection;
+  return dataFilter(filedata1, filedata2, differenceCollection);
 }
 
 export default genDiff;
