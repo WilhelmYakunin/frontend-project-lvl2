@@ -10,14 +10,15 @@
 <h2>Requirements</h2>
   <p>Node.js version: 14.4.0. and *nix system</p> 
 
+<h2>How-to-use videos</h2>
 <ol> 
-   <li><p>generate difference .json</p>
+   <li><p>Generate difference .json</p>
       <a href="https://asciinema.org/a/351193" target="_blank"><img src="https://asciinema.org/a/351193.svg" width="320" /></a>
     </li>
-   <li><p>generate difference .yml</p> 
+   <li><p>Generate difference .yml</p> 
       <a href="https://asciinema.org/a/351196" target="_blank"><img src="https://asciinema.org/a/351196.svg" width="320"/></a>
     </li>
-   <li><p>enerate difference .ini</p>
+   <li><p>Generate difference .ini</p>
       <a href="https://asciinema.org/a/351198" target="_blank"><img src="https://asciinema.org/a/351198.svg" width="320" /></a>
     </li>
   </ol>

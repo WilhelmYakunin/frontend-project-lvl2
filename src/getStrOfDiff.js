@@ -4,11 +4,9 @@ function getStrOfDifference(obj) {
     string += `
     ${key}: ${value}\r\n`;
   });
-  obj.MODIFIED.forEach(({ key, value }) => {
-    string += `${'  + '}${key}: ${value}\r\n`;
-  });
-  obj.NOTEQUAL.forEach(({ key, value }) => {
+  obj.MODIFIED.forEach(({ key, value, modifiedValue }) => {
     string += `${'  - '}${key}: ${value}\r\n`;
+    string += `${'  + '}${key}: ${modifiedValue}\r\n`;
   });
   obj.ADDED.forEach(({ key, value }) => {
     string += `${'  + '}${key}: ${value}\r\n`;

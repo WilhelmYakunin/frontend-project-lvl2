@@ -9,7 +9,6 @@ function genDiff(filepath1, filepath2) {
 
   const differenceCollection = {
     EQUAL: [],
-    NOTEQUAL: [],
     MODIFIED: [],
     DELETED: [],
     ADDED: [],
@@ -21,7 +20,8 @@ function genDiff(filepath1, filepath2) {
       differenceCollection.EQUAL.push({ key, value });
     }
     if ((keysOfFile2.includes(key)) && (filedata2[key] !== value)) {
-      differenceCollection.NOTEQUAL.push({ key, value });
+      const modifiedValue = filedata2[key];
+      differenceCollection.MODIFIED.push({ key, value, modifiedValue });
     }
     if (!keysOfFile2.includes(key)) {
       differenceCollection.DELETED.push({ key, value });
@@ -32,9 +32,6 @@ function genDiff(filepath1, filepath2) {
     const value = filedata2[key];
     if (!keysOfFile1.includes(key)) {
       differenceCollection.ADDED.push({ key, value });
-    }
-    if ((keysOfFile1.includes(key)) && (filedata1[key] !== value)) {
-      differenceCollection.MODIFIED.push({ key, value });
     }
   });
 
