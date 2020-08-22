@@ -2,7 +2,8 @@
 
 import program from 'commander';
 import genDiff from '../src/diffEngine.js';
-import getStrOfDiff from '../src/getStrOfDiff.js';
+import getParsed from '../src/parser.js';
+import stylish from '../src/stylish.js';
 
 program
   .version('1.0.0')
@@ -10,7 +11,7 @@ program
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format [type]', 'output format')
   .action((filepath1, filepath2) => {
-    console.log(getStrOfDiff(genDiff(filepath1, filepath2)));
+    console.log(stylish(genDiff(getParsed(filepath1), getParsed(filepath2))));
   });
 
 program.parse(process.argv);

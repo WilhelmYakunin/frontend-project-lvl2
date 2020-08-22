@@ -1,20 +1,16 @@
-function getStrOfDeepDifference(obj) {
-  let string = '';
-  obj.EQUAL.forEach(({ key, value }) => {
-    string += `${key}: ${value}\r\n`;
-  });
-  obj.ADDED.forEach(({ key, value }) => {
-    string += `${'  + '}${key}: ${value}\r\n`;
-  });
-  obj.MODIFIED.forEach(({ key, value, modifiedValue }) => {
-    string += `${'  '}${key}: ${value}\r\n`;
-    string += `${'  '}${key}: ${modifiedValue}\r\n`;
-  });
-  obj.DELETED.forEach(({ key, value }) => {
-    string += `${'  - '}${key}: ${value}\r\n`;
-  });
-  return `${'{\r\n'
-  }${string}}`;
-}
+const indent = ' ';
+const creatIndent = (n) => indent.repeat(n);
+const prefix = (marker, iter = 0) => `${creatIndent(iter)} ${marker} `;
 
-export default getStrOfDeepDifference;
+const stringify = (data) => {
+  const acc = [];
+  data.map((elem) => {
+    if (elem.state === 'object') {
+      return acc.push(`${prefix(elem.marker)}${elem.key}: ${stringify(elem.value)}`);
+    }
+    return acc.push(`${prefix(elem.marker)}${elem.key}: ${JSON.stringify(elem.value, null, 4).replace(/[",]/g, '')}`);
+  });
+  return `{\n${acc.join('\n')}\n}`;
+};
+
+export default stringify;
