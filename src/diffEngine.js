@@ -11,38 +11,23 @@ const genDiffTree = (oldObj, newObj) => {
 
     if (!_.has(oldObj, key)) {
       return {
-        state: 'new',
-        marker: '+',
-        key,
-        value: newValue,
+        state: 'added', marker: '+', key, value: newValue,
       };
     }
     if (!_.has(newObj, key)) {
       return {
-        state: 'deleted',
-        marker: '-',
-        key,
-        value: oldValue,
+        state: 'removed', marker: '-', key, value: oldValue,
       };
     }
     if ((_.isObject(oldValue) && _.isObject(newValue)) && !_.isEqual(newValue, oldValue)) {
       return {
-        state: 'object',
-        marker: ' ',
-        key,
-        value: genDiffTree(oldValue, newValue),
+        state: 'object', marker: ' ', key, value: genDiffTree(oldValue, newValue),
       };
     }
     return _.isEqual(newValue, oldValue) ? {
-      state: 'equal',
-      marker: ' ',
-      key,
-      value: newValue,
+      state: 'equal', marker: ' ', key, value: newValue,
     } : {
-      state: 'modified',
-      marker: ' ',
-      key,
-      value: { oldValue, newValue },
+      state: 'updated', marker: ' ', key, value: { oldValue, newValue },
     };
   });
 

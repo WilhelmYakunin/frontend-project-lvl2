@@ -1,13 +1,18 @@
-{
+export default function stylish() {
+  return `{
    common: {
    setting1: Value 1
  - setting2: 200
- - setting3: true
  + setting3: {
     key: value
 }
+ - setting3: true
    setting6: {
    key: value
+   doge: {
+ + wow: so much
+ - wow: too much
+}
  + ops: vops
 }
  + follow: false
@@ -17,18 +22,27 @@
 }
 }
    group1: {
- - baz: bas
  + baz: bars
+ - baz: bas
    foo: bar
+ + nest: str
  - nest: {
     key: value
 }
- + nest: str
 }
  - group2: {
     abc: 12345
+    deep: {
+        id: 45
+    }
 }
  + group3: {
     fee: 100500
+    deep: {
+        id: {
+            number: 45
+        }
+    }
 }
+}`;
 }

@@ -16,7 +16,7 @@ function getParsed(filePath) {
   if (extention === '.ini') {
     return ini.parse(fileData);
   }
-  return 'Sorry, unknown format ;((';
+  return 'Sorry, unknown file format ;((';
 }
 
 export default getParsed;
