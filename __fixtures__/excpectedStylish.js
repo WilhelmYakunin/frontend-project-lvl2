@@ -30,19 +30,6 @@ export default function stylish() {
     key: value
 }
 }
- - group2: {
-    abc: 12345
-    deep: {
-        id: 45
-    }
-}
- + group3: {
-    fee: 100500
-    deep: {
-        id: {
-            number: 45
-        }
-    }
-}
-}`;
+ - group2: {\n    abc: 12345\n    deep: {\n        id: 45\n    }\n}
+ + group3: {\n    fee: 100500\n    deep: {\n        id: {\n            number: 45\n        }\n    }\n}\n}`;
 }

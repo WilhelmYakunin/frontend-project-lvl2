@@ -7,13 +7,9 @@ const complexFilter = (state, value) => {
   return _.isBoolean(value) ? value : `'${value}'`;
 };
 
-function getPlain(data, elemKey = '') {
+export default function getPlain(data, elemKey = '') {
   const acc = data.map((elem) => {
     const porpertyName = `${elemKey}${elem.key}`;
-
-    if (elem.state === 'equal') {
-      return (`Property '${porpertyName}' was not changed`);
-    }
     if (elem.state === 'added') {
       return (`Property '${porpertyName}' was added with value: ${complexFilter(elem.state, elem.value)}`);
     }
@@ -23,9 +19,7 @@ function getPlain(data, elemKey = '') {
     if (elem.state === 'updated') {
       return (`Property '${porpertyName}' was updated. From ${complexFilter(elem.state, elem.value.oldValue)} to ${complexFilter(elem.state, elem.value.newValue)}`);
     }
-    return getPlain(elem.value, `${porpertyName}.`);
+    return (elem.state === 'equal') ? `Property '${porpertyName}' was not changed` : getPlain(elem.value, `${porpertyName}.`);
   });
   return `${acc.join('\n')}`;
 }
-
-export default getPlain;

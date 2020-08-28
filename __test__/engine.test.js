@@ -16,15 +16,9 @@ test('genDiff engine test', () => {
   expect(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json')))).toEqual(expectedComplexObj());
 });
 
-test('test stylish', () => {
+test('output styles test', () => {
   expect(stylish(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json'))))).toEqual(stylishExpected());
-});
-
-test('test plain', () => {
   expect(plain(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json'))))).toEqual(plainExpected());
-});
-
-test('test JSON', () => {
   expect(JSON.stringify(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json'))), null, 4)).toEqual(JSON.stringify(expectedComplexObj(), null, 4));
 });
 
@@ -32,4 +26,5 @@ test('parser test', () => {
   expect(getParsed(getPath('before.json'))).toEqual(expectedComplexJson());
   expect(getParsed(getPath('before.yml'))).toEqual(expectedObj());
   expect(getParsed(getPath('before.ini'))).toEqual(expectedObj());
+  expect(getParsed(getPath('before.txt'))).toEqual('Sorry, unknown file format ;((');
 });

@@ -1,9 +1,7 @@
 import _ from 'lodash';
 
-const genDiffTree = (oldObj, newObj) => {
-  const keysOfFile1 = _.keys(oldObj);
-  const keysOfFile2 = _.keys(newObj);
-  const uniqueKeys = _.union(keysOfFile1, keysOfFile2);
+export default function genDiffTree(oldObj, newObj) {
+  const uniqueKeys = _.union(_.keys(oldObj), _.keys(newObj));
 
   const diffTree = uniqueKeys.map((key) => {
     const oldValue = oldObj[key];
@@ -30,8 +28,5 @@ const genDiffTree = (oldObj, newObj) => {
       state: 'updated', marker: ' ', key, value: { oldValue, newValue },
     };
   });
-
   return diffTree;
-};
-
-export default genDiffTree;
+}
