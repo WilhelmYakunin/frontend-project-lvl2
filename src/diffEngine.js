@@ -6,7 +6,6 @@ export default function genDiffTree(oldObj, newObj) {
   const diffTree = uniqueKeys.map((key) => {
     const oldValue = oldObj[key];
     const newValue = newObj[key];
-
     if (!_.has(oldObj, key)) {
       return {
         state: 'added', marker: '+', key, value: newValue,
