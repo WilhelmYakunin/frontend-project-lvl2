@@ -14,7 +14,7 @@ program
   .action((filepath1, filepath2) => {
     const tree = genDiff(getParsed(filepath1), getParsed(filepath2));
     if (program.format === undefined) {
-      console.log(stylish(tree));
+      console.log(`${stylish(tree)}\n}`);
     } else if (program.format === 'plain') {
       console.log(plain(tree));
     } else if (program.format === 'json') {

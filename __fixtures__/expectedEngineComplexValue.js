@@ -1,7 +1,7 @@
 const expectedComplexObj = () => ([
   {
     state: 'object',
-    marker: ' ',
+    marker: '  ',
     key: 'common',
     value: [
       {
@@ -12,13 +12,13 @@ const expectedComplexObj = () => ([
       },
       {
         state: 'updated',
-        marker: ' ',
+        marker: '',
         key: 'setting3',
         value: { oldValue: true, newValue: { key: 'value' } },
       },
       {
         state: 'object',
-        marker: ' ',
+        marker: '  ',
         key: 'setting6',
         value: [
           {
@@ -26,10 +26,10 @@ const expectedComplexObj = () => ([
           },
           {
             state: 'object',
-            marker: ' ',
+            marker: '  ',
             key: 'doge',
             value: [{
-              state: 'updated', marker: ' ', key: 'wow', value: { oldValue: 'too much', newValue: 'so much' },
+              state: 'updated', marker: '', key: 'wow', value: { oldValue: 'too much', newValue: 'so much' },
             }],
           },
           {
@@ -53,12 +53,12 @@ const expectedComplexObj = () => ([
   },
   {
     state: 'object',
-    marker: ' ',
+    marker: '  ',
     key: 'group1',
     value: [
       {
         state: 'updated',
-        marker: ' ',
+        marker: '',
         key: 'baz',
         value: { oldValue: 'bas', newValue: 'bars' },
       },
@@ -67,7 +67,7 @@ const expectedComplexObj = () => ([
       },
       {
         state: 'updated',
-        marker: ' ',
+        marker: '',
         key: 'nest',
         value: { oldValue: { key: 'value' }, newValue: 'str' },
       },
