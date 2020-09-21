@@ -4,7 +4,7 @@
     "url": "git+https://github.com/WilhelmYakunin/frontend-project-lvl2.git"
   },
   "name": "frontend-project-lvl2",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "gendiff.js",
   "scripts": {

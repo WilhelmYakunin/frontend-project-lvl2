@@ -7,23 +7,23 @@ export default function genDiffTree(oldObj, newObj) {
     const newValue = newObj[key];
     if (!_.has(oldObj, key)) {
       return {
-        state: 'added', marker: '+', key, value: newValue,
+        type: 'added', key, value: newValue,
       };
     }
     if (!_.has(newObj, key)) {
       return {
-        state: 'removed', marker: '-', key, value: oldValue,
+        type: 'removed', key, value: oldValue,
       };
     }
     if ((_.isObject(oldValue) && _.isObject(newValue)) && !_.isEqual(newValue, oldValue)) {
       return {
-        state: 'object', marker: '  ', key, value: genDiffTree(oldValue, newValue),
+        type: 'object', key, value: genDiffTree(oldValue, newValue),
       };
     }
     return _.isEqual(newValue, oldValue) ? {
-      state: 'equal', marker: ' ', key, value: newValue,
+      type: 'equal', key, value: newValue,
     } : {
-      state: 'updated', marker: '', key, value: { oldValue, newValue },
+      type: 'updated', key, oldValue, newValue,
     };
   });
   return diffTree;

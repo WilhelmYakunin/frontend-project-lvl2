@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-const getValue = (state, value) => {
-  if (_.isObject(value) && state !== 'object') {
+const getValue = (type, value) => {
+  if (_.isObject(value) && type !== 'object') {
     return '[complex value]';
   }
   return _.isBoolean(value) ? value : `'${value}'`;
@@ -10,16 +10,16 @@ const getValue = (state, value) => {
 export default function getPlain(data, elemKey = '') {
   const acc = data.map((elem) => {
     const porpertyName = `${elemKey}${elem.key}`;
-    if (elem.state === 'added') {
-      return (`Property '${porpertyName}' was added with value: ${getValue(elem.state, elem.value)}`);
+    if (elem.type === 'added') {
+      return (`Property '${porpertyName}' was added with value: ${getValue(elem.type, elem.value)}`);
     }
-    if (elem.state === 'removed') {
+    if (elem.type === 'removed') {
       return (`Property '${porpertyName}' was removed`);
     }
-    if (elem.state === 'updated') {
-      return (`Property '${porpertyName}' was updated. From ${getValue(elem.state, elem.value.oldValue)} to ${getValue(elem.state, elem.value.newValue)}`);
+    if (elem.type === 'updated') {
+      return (`Property '${porpertyName}' was updated. From ${getValue(elem.type, elem.oldValue)} to ${getValue(elem.type, elem.newValue)}`);
     }
-    return (elem.state === 'equal') ? `Property '${porpertyName}' was not changed` : getPlain(elem.value, `${porpertyName}.`);
+    return (elem.type === 'equal') ? `Property '${porpertyName}' was not changed` : getPlain(elem.value, `${porpertyName}.`);
   });
   return `${acc.join('\n')}`;
 }

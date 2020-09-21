@@ -1,30 +1,25 @@
-import * as path from 'path';
-import genDiff from '../src/diffEngine';
-import expectedComplexJson from '../__fixtures__/expectedDataComplex.js';
-import getParsed from '../src/parser.js';
-import expectedObj from '../__fixtures__/expectedDataInitial.js';
-import expectedComplexObj from '../__fixtures__/expectedEngineComplexValue.js';
-import getStylish from '../src/stylish.js';
-import stylishExpected from '../__fixtures__/excpectedStylish.js';
-import plain from '../src/plain.js';
-import plainExpected from '../__fixtures__/plainExpected.js';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import genDiff from '../src/gendiff';
 
-const baseFolder = '../frontend-project-lvl2/__fixtures__/';
-const getPath = (name) => path.resolve(baseFolder, name);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
+const read = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-test('genDiff engine test', () => {
-  expect(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json')))).toEqual(expectedComplexObj());
-});
-
-test('output styles test', () => {
-  expect(getStylish(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json'))))).toEqual(stylishExpected());
-  expect(plain(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json'))))).toEqual(plainExpected());
-  expect(JSON.stringify(genDiff(getParsed(getPath('before.json')), getParsed(getPath('after.json'))), null, 4)).toEqual(JSON.stringify(expectedComplexObj(), null, 4));
-});
-
-test('parser test', () => {
-  expect(getParsed(getPath('before.json'))).toEqual(expectedComplexJson());
-  expect(getParsed(getPath('before.yml'))).toEqual(expectedObj());
-  expect(getParsed(getPath('before.ini'))).toEqual(expectedObj());
-  expect(getParsed(getPath('before.txt'))).toEqual('Sorry, unknown file format ;((');
+describe.each([
+  ['json', 'json', 'result-json'],
+  ['json', 'plain', 'result-plain'],
+  ['json', 'stylish', 'result-stylish'],
+  ['ini', 'json', 'result-json'],
+  ['ini', 'plain', 'result-plain'],
+  ['ini', 'stylish', 'result-stylish'],
+  ['yml', 'json', 'result-json'],
+  ['yml', 'plain', 'result-plain'],
+  ['yml', 'stylish', 'result-stylish'],
+])('%s', (ext, format, result) => {
+  test(`${format} genDiff test`, () => {
+    expect(genDiff(getFixturePath(`before.${ext}`), getFixturePath(`after.${ext}`), format)).toEqual(read(result));
+  });
 });
