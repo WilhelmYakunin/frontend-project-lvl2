@@ -8,18 +8,17 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 const read = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-describe.each([
-  ['json', 'json', 'result-json'],
-  ['json', 'plain', 'result-plain'],
-  ['json', 'stylish', 'result-stylish'],
-  ['ini', 'json', 'result-json'],
-  ['ini', 'plain', 'result-plain'],
-  ['ini', 'stylish', 'result-stylish'],
-  ['yml', 'json', 'result-json'],
-  ['yml', 'plain', 'result-plain'],
-  ['yml', 'stylish', 'result-stylish'],
-])('%s', (ext, format, result) => {
+const fixturesFormates = ['json', 'ini', 'yml'];
+const styles = ['json', 'plain', 'stylish'];
+
+describe.each(fixturesFormates)('%s', (format) => {
   test(`${format} genDiff test`, () => {
-    expect(genDiff(getFixturePath(`before.${ext}`), getFixturePath(`after.${ext}`), format)).toEqual(read(result));
+    styles.forEach((style) => {
+      const fileBefore = getFixturePath(`before.${format}`);
+      const fileAfter = getFixturePath(`after.${format}`);
+      const tested = genDiff(fileBefore, fileAfter, style);
+      const expected = read(`result-${style}.txt`);
+      expect(tested).toEqual(expected);
+    });
   });
 });

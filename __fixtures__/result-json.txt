@@ -1,6 +1,6 @@
 [
   {
-    "type": "object",
+    "type": "nested",
     "key": "common",
     "value": [
       {
@@ -16,31 +16,31 @@
       {
         "type": "updated",
         "key": "setting3",
-        "oldValue": true,
-        "newValue": {
+        "value": {
           "key": "value"
-        }
+        },
+        "oldValue": true
       },
       {
-        "type": "object",
+        "type": "nested",
         "key": "setting6",
         "value": [
           {
-            "type": "equal",
-            "key": "key",
-            "value": "value"
-          },
-          {
-            "type": "object",
+            "type": "nested",
             "key": "doge",
             "value": [
               {
                 "type": "updated",
                 "key": "wow",
-                "oldValue": "too much",
-                "newValue": "so much"
+                "value": "so much",
+                "oldValue": "too much"
               }
             ]
+          },
+          {
+            "type": "equal",
+            "key": "key",
+            "value": "value"
           },
           {
             "type": "added",
@@ -69,14 +69,14 @@
     ]
   },
   {
-    "type": "object",
+    "type": "nested",
     "key": "group1",
     "value": [
       {
         "type": "updated",
         "key": "baz",
-        "oldValue": "bas",
-        "newValue": "bars"
+        "value": "bars",
+        "oldValue": "bas"
       },
       {
         "type": "equal",
@@ -86,10 +86,10 @@
       {
         "type": "updated",
         "key": "nest",
+        "value": "str",
         "oldValue": {
           "key": "value"
-        },
-        "newValue": "str"
+        }
       }
     ]
   },
