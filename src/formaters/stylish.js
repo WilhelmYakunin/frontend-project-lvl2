@@ -1,8 +1,6 @@
 import _ from 'lodash';
 
 const indent = '  ';
-const openarce = '{';
-const closeBrace = '}';
 
 const setIndicator = (type) => {
   switch (type) {
@@ -29,23 +27,22 @@ const getComplexValue = (objectValue, nestedness) => {
 
 const makeDiffString = (depth, sign, key, value) => `${indent.repeat(depth)}${sign}${key}: ${getComplexValue(value, depth)}`;
 
-export default function getStylish(data, depth = 1) {
-  const acc = _.values(data).map((node) => {
-    const {
-      type, key, value, oldValue,
-    } = node;
-    if (value) {
+export default function getStylish(data) {
+  const getStrings = (inputData = data, depth = 1) => {
+    const acc = _.values(inputData).map((node) => {
+      const {
+        type, key, state, oldState,
+      } = node;
       switch (type) {
         case 'nested':
-          return `  ${indent.repeat(depth)}${key}: ${getStylish(value, depth + 2)}`;
+          return `${indent.repeat(depth + 1)}${key}: ${getStrings(state, depth + 2)}`;
         case 'updated':
-          return `${makeDiffString(depth, '+ ', key, value)}\n${makeDiffString(depth, '- ', key, oldValue)}`;
+          return `${makeDiffString(depth, '+ ', key, state)}\n${makeDiffString(depth, '- ', key, oldState)}`;
         default:
-          return `${makeDiffString(depth, setIndicator(type), key, value)}`;
+          return `${makeDiffString(depth, setIndicator(type), key, state)}`;
       }
-    } else {
-      return `${makeDiffString(depth, setIndicator(type), key, value)}`;
-    }
-  });
-  return `${openarce}\n${acc.join('\n')}\n${indent.repeat(depth - 1)}${closeBrace}`;
+    });
+    return `{\n${acc.join('\n')}\n${indent.repeat(depth - 1)}}`;
+  };
+  return getStrings();
 }

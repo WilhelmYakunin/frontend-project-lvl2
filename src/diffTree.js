@@ -1,33 +1,29 @@
 import _ from 'lodash';
 
+const setTokenInfo = (typeIfno, keyInfo, stateInfo, oldStateInfo) => ({
+  type: typeIfno,
+  key: keyInfo,
+  state: stateInfo,
+  oldState: oldStateInfo,
+});
+
 export default function getDiffTree(oldObj, newObj) {
-  const uniqueKeys = _.union(_.keys(oldObj).sort(), _.keys(newObj).sort());
-  const diffTree = uniqueKeys.map((key) => {
-    const oldValue = oldObj[key];
-    const currentValue = newObj[key];
+  const uniqueKeys = _.union(_.keys(oldObj), _.keys(newObj)).sort();
+  return uniqueKeys.map((key) => {
+    const oldState = oldObj[key];
+    const currentState = newObj[key];
     if (!_.has(oldObj, key)) {
-      return {
-        type: 'added', key, value: currentValue,
-      };
+      return setTokenInfo('added', key, currentState);
     }
     if (!_.has(newObj, key)) {
-      return {
-        type: 'removed', key, value: oldValue,
-      };
+      return setTokenInfo('removed', key, oldState);
     }
-    if (_.isPlainObject(oldValue) && _.isPlainObject(currentValue)) {
-      return {
-        type: 'nested', key, value: getDiffTree(oldValue, currentValue),
-      };
+    if (_.isPlainObject(oldState) && _.isPlainObject(currentState)) {
+      return setTokenInfo('nested', key, getDiffTree(oldState, currentState));
     }
-    if (_.isEqual(currentValue, oldValue)) {
-      return {
-        type: 'equal', key, value: currentValue,
-      };
+    if (_.isEqual(currentState, oldState)) {
+      return setTokenInfo('equal', key, currentState);
     }
-    return {
-      type: 'updated', key, value: currentValue, oldValue,
-    };
+    return setTokenInfo('updated', key, currentState, oldState);
   });
-  return diffTree;
 }

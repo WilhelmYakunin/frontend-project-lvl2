@@ -9,23 +9,19 @@ const getState = (value) => {
 
 export default function getPlain(data, elemKey = '') {
   const acc = data.map((elem) => {
-    const propertyName = () => {
-      if (elemKey === '') {
-        return `${elem.key}`;
-      }
-      return `${elemKey}${elem.key}`;
-    };
+    const propertyName = () => ((elemKey === '') ? `${elem.key}` : `${elemKey}${elem.key}`);
+
     switch (elem.type) {
       case 'added':
-        return (`Property '${propertyName()}' was added with value: ${getState(elem.value)}`);
+        return (`Property '${propertyName()}' was added with value: ${getState(elem.state)}`);
       case 'removed':
         return (`Property '${propertyName()}' was removed`);
       case 'updated':
-        return (`Property '${propertyName()}' was updated. From ${getState(elem.value)} to ${getState(elem.oldValue)}`);
+        return (`Property '${propertyName()}' was updated. From ${getState(elem.state)} to ${getState(elem.oldState)}`);
       case 'equal':
         return `Property '${propertyName()}' was not changed`;
       default:
-        return getPlain(elem.value, `${propertyName()}.`);
+        return getPlain(elem.state, `${propertyName()}.`);
     }
   });
   return `${acc.join('\n')}`;

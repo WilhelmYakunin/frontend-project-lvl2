@@ -6,10 +6,10 @@ export default function render(tree, format) {
     case 'json':
       return JSON.stringify(tree, null, 2);
     case 'plain':
-      return `${getPlain(tree)}`;
+      return getPlain(tree);
     case 'stylish':
-      return `${getStylish(tree)}`;
+      return getStylish(tree);
     default:
-      throw new Error('sorry. unknown output style, please check it');
+      throw new Error(`sorry. unknown output style ${format}, please check it`);
   }
 }

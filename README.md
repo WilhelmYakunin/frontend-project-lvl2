@@ -8,18 +8,27 @@
  </ol>
 
 <h2>Requirements</h2>
-  <p>Node.js version: 14.4.0. and *nix system</p> 
+  <p>Node.js version: 14.4.0. and *nix system</p>
+
+<h2>Supported input files formats are: json, yml and ini</h2>
 
 <h2>How-to-use videos</h2>
 <ol> 
-   <li><p>Generate difference .json</p>
-      <a href="https://asciinema.org/a/351193" target="_blank"><img src="https://asciinema.org/a/351193.svg" width="320" /></a>
+   <li><p>Generate difference and output in stylish (as default output) type</p>
+      <a href="https://asciinema.org/a/364550" target="_blank"><img src="hhttps://asciinema.org/a/364550.svg" width="320" /></a>
     </li>
-   <li><p>Generate difference .yml</p> 
-      <a href="https://asciinema.org/a/351196" target="_blank"><img src="https://asciinema.org/a/351196.svg" width="320"/></a>
+   <li><p>Generate difference and output in plain type</p> 
+      <a href="https://asciinema.org/a/364551" target="_blank"><img src="https://asciinema.org/a/364551.svg" width="320"/></a>
     </li>
-   <li><p>Generate difference .ini</p>
-      <a href="https://asciinema.org/a/351198" target="_blank"><img src="https://asciinema.org/a/351198.svg" width="320" /></a>
+   <li><p>Generate difference and output in json (by default depth 2) type</p>
+      <a href="https://asciinema.org/a/364552" target="_blank"><img src="https://asciinema.org/a/364552.svg" width="320" /></a>
     </li>
   </ol>
+
+<h2>Install</h2>
+run in command line
+At first:<code>git clone https://github.com/WilhelmYakunin/frontend-project-lvl2.git</code>
+Then <code>npm install</code>
  
+ <h2>Run test</h2>
+ <p>make test</p>

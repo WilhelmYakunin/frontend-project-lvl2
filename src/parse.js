@@ -6,17 +6,15 @@ const parseNumber = (object) => _.mapValues(object, (value) => (_.isPlainObject(
   ? parseNumber(value)
   : Number.parseFloat(value) || value));
 
-export default function parse(format, filedata) {
+export default function parse(filedata, format) {
   switch (format) {
     case 'yml':
-      return yaml.safeLoad(filedata);
-    case 'yaml':
       return yaml.safeLoad(filedata);
     case 'ini':
       return parseNumber(ini.parse(filedata));
     case 'json':
       return JSON.parse(filedata);
     default:
-      throw new Error('unknown format');
+      throw new Error(`unknown format ${format}`);
   }
 }
