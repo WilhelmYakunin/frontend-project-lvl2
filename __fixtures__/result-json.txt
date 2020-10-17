@@ -2,67 +2,67 @@
   {
     "type": "nested",
     "key": "common",
-    "state": [
+    "value": [
       {
         "type": "added",
         "key": "follow",
-        "state": false
+        "value": false
       },
       {
         "type": "equal",
         "key": "setting1",
-        "state": "Value 1"
+        "value": "Value 1"
       },
       {
         "type": "removed",
         "key": "setting2",
-        "state": 200
+        "value": 200
       },
       {
         "type": "updated",
         "key": "setting3",
-        "state": {
+        "value": {
           "key": "value"
         },
-        "oldState": true
+        "valueBefore": true
       },
       {
         "type": "added",
         "key": "setting4",
-        "state": "blah blah"
+        "value": "blah blah"
       },
       {
         "type": "added",
         "key": "setting5",
-        "state": {
+        "value": {
           "key5": "value5"
         }
       },
       {
         "type": "nested",
         "key": "setting6",
-        "state": [
+        "value": [
           {
             "type": "nested",
             "key": "doge",
-            "state": [
+            "value": [
               {
                 "type": "updated",
                 "key": "wow",
-                "state": "so much",
-                "oldState": "too much"
+                "value": "so much",
+                "valueBefore": "too much"
               }
             ]
           },
           {
             "type": "equal",
             "key": "key",
-            "state": "value"
+            "value": "value"
           },
           {
             "type": "added",
             "key": "ops",
-            "state": "vops"
+            "value": "vops"
           }
         ]
       }
@@ -71,23 +71,23 @@
   {
     "type": "nested",
     "key": "group1",
-    "state": [
+    "value": [
       {
         "type": "updated",
         "key": "baz",
-        "state": "bars",
-        "oldState": "bas"
+        "value": "bars",
+        "valueBefore": "bas"
       },
       {
         "type": "equal",
         "key": "foo",
-        "state": "bar"
+        "value": "bar"
       },
       {
         "type": "updated",
         "key": "nest",
-        "state": "str",
-        "oldState": {
+        "value": "str",
+        "valueBefore": {
           "key": "value"
         }
       }
@@ -96,7 +96,7 @@
   {
     "type": "removed",
     "key": "group2",
-    "state": {
+    "value": {
       "abc": 12345,
       "deep": {
         "id": 45
@@ -106,7 +106,7 @@
   {
     "type": "added",
     "key": "group3",
-    "state": {
+    "value": {
       "fee": 100500,
       "deep": {
         "id": {

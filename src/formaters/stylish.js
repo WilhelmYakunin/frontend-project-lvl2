@@ -31,15 +31,20 @@ export default function getStylish(data) {
   const getStrings = (inputData = data, depth = 1) => {
     const acc = _.values(inputData).map((node) => {
       const {
-        type, key, state, oldState,
+        type, key, value, valueBefore,
       } = node;
       switch (type) {
+        case 'added':
+        case 'removed':
+        case 'equal':
+          return `${makeDiffString(depth, setIndicator(type), key, value)}`;
         case 'nested':
-          return `${indent.repeat(depth + 1)}${key}: ${getStrings(state, depth + 2)}`;
+          return `${indent.repeat(depth + 1)}${key}: ${getStrings(value, depth + 2)}`;
         case 'updated':
-          return `${makeDiffString(depth, '+ ', key, state)}\n${makeDiffString(depth, '- ', key, oldState)}`;
+          return `${makeDiffString(depth, '+ ', key, value)}\n${makeDiffString(depth, '- ', key, valueBefore)}`;
+
         default:
-          return `${makeDiffString(depth, setIndicator(type), key, state)}`;
+          throw new Error(`Unknown type: '${type}'!`);
       }
     });
     return `{\n${acc.join('\n')}\n${indent.repeat(depth - 1)}}`;
